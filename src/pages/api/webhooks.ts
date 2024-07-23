@@ -40,9 +40,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       event = {
-        buf,
-        secret,
-        process.env.STRIPE_WEBHOOK_SECRET,
         type : "identity.verification_session.verified"
       } /*stripe.webhooks.constructEvent(
         buf,
