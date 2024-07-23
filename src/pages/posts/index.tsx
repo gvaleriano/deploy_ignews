@@ -59,10 +59,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const posts = response.results.map(post => {
     return {
       slug: post.uid,
-      title: RichText.asText(post.data.title),
+      title: RichText.asText(post.data),
       //buscar no <content> do post, o primeiro <paragraph> e 
       //trazer o texto, caso contrario, retorna vazio
-      excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
+      excerpt: '',//post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
       //formatar a data do post
       updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
         day: '2-digit',

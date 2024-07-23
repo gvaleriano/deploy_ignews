@@ -62,8 +62,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   //Formatação dos dados
   const post = {
     slug,
-    title: RichText.asText(response.data.title),
-    content: RichText.asHtml(response.data.content),
+    title: RichText.asText(response.data),
+    content: RichText.asHtml(response.data),
     updatedAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: 'long',
