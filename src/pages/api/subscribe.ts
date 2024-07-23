@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/client';
 
 import { query as q } from 'faunadb';
 import { fauna } from '../../services/fauna';
-import { stripe } from '../../services/stripe';
+//import { stripe } from '../../services/stripe';
 
 interface User {
   ref: {
@@ -29,9 +29,9 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     let customerId = user.data.stripe_customer_id;
 
     if (!customerId) {
-      const stripeCustomer = await stripe.customers.create({
+      const stripeCustomer = {id: "cus_NffrFeUfNV2Hib", email : "jennyrosen@example.com"}/*await stripe.customers.create({
         email: session.user.email,
-      })
+      })*/
 
       await fauna.query(
         q.Update(
@@ -47,7 +47,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       customerId = stripeCustomer.id;
     }
 
-    const stripeCheckoutSession = await stripe.checkout.sessions.create({
+    const stripeCheckoutSession = {
       customer: customerId,
       payment_method_types: ['card'],
       billing_address_collection: 'required',
@@ -61,7 +61,21 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       allow_promotion_codes: true,
       success_url: process.env.STRIPE_SUCCESS_URL,
       cancel_url: process.env.STRIPE_CANCEL_URL,
-    });
+    } /*await stripe.checkout.sessions.create({
+      customer: customerId,
+      payment_method_types: ['card'],
+      billing_address_collection: 'required',
+      line_items: [
+        {
+          price: 'price_1JdL3qHZMnT8Ufl5y8o9tysR',
+          quantity: 1,
+        },
+      ],
+      mode: 'subscription',
+      allow_promotion_codes: true,
+      success_url: process.env.STRIPE_SUCCESS_URL,
+      cancel_url: process.env.STRIPE_CANCEL_URL,
+    });*/
 
     return response.status(200).json({ sessionId: stripeCheckoutSession.id });
 
@@ -70,4 +84,3 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     response.status(405).end('Method Not Allowed')
   }
 };
-
