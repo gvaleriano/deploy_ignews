@@ -39,9 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     let event: Stripe.Event;
 
     try {
-      event = {
-        type : "identity.verification_session.verified"
-      } /*stripe.webhooks.constructEvent(
+      event = ""/*stripe.webhooks.constructEvent(
         buf,
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
@@ -51,7 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).send(`webhook-error: ${error.message}`)
     }
 
-    const { type } = event;
+    const {type}  = { type: "checkout.session.completed"}
 
     if (relevantEvents.has(type)) {
       try {
