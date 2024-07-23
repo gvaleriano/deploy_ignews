@@ -48,6 +48,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     }
 
     const stripeCheckoutSession = {
+      id: "cs_test_a11YYufWQzNY63zpQ6QSNRQhkUpVph4WRmzW0zWJO2znZKdVujZ0N0S22u",
       customer: customerId,
       payment_method_types: ['card'],
       billing_address_collection: 'required',
@@ -84,3 +85,4 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     response.status(405).end('Method Not Allowed')
   }
 };
+
