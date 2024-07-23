@@ -22,7 +22,7 @@ export async function saveSubscription(
     )
   )
 
-  const subscription = { id: "sub_1MowQVLkdIwHu7ixeRlqHVzs", "status": "active"   "items": {
+  const subscription = { id: "sub_1MowQVLkdIwHu7ixeRlqHVzs", "status": "active", "items": {
     "object": "list",
     "data": [
       {
