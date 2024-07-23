@@ -21,7 +21,8 @@
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
     "sass": "^1.42.1",
-    "stripe": "^8.176.0"
+    "stripe": "^8.176.0",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.10.1",
@@ -30,7 +31,7 @@
     "@types/next-auth": "^3.15.0",
     "@types/node": "^16.9.6",
     "@types/prismic-dom": "^2.1.1",
-    "@types/react": "^17.0.24",
+    "@types/react": "^17.0.80",
     "babel-jest": "^27.3.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
