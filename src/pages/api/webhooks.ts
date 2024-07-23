@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { Readable } from 'stream';
 
 import Stripe from 'stripe';
-import { stripe } from "../../services/stripe";
+//import { stripe } from "../../services/stripe";
 import { saveSubscription } from './_lib/manageSubscription';
 
 async function buffer(readable: Readable) {
@@ -39,11 +39,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     let event: Stripe.Event;
 
     try {
-      event = stripe.webhooks.constructEvent(
+      event = {
+        buf,
+        secret,
+        process.env.STRIPE_WEBHOOK_SECRET,
+        type : "identity.verification_session.verified"
+      } /*stripe.webhooks.constructEvent(
         buf,
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
-      );
+      );*/
     } catch (error) {
       console.log(error.message)
       return res.status(400).send(`webhook-error: ${error.message}`)
