@@ -37,17 +37,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const secret = req.headers["stripe-signature"];
 
     let event: Stripe.Event;
-
+    /*
     try {
       event = ""/*stripe.webhooks.constructEvent(
         buf,
         secret,
         process.env.STRIPE_WEBHOOK_SECRET
-      );*/
+      );
     } catch (error) {
       console.log(error.message)
       return res.status(400).send(`webhook-error: ${error.message}`)
-    }
+    }*/
 
     const {type}  = { type: "checkout.session.completed"}
 
